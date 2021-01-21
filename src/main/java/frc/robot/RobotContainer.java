@@ -25,19 +25,21 @@ public class RobotContainer {
     private final DriveTrain driveTrain;
     private final DriveWithJoystick driveWithJoystick;
     private final DriveForwardTimed driveForwardTimed;
-    private final XboxController driverJoystick;
-    
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    driveTrain = new DriveTrain();
-    driveWithJoystick = new DriveWithJoystick(driveTrain);
-    driveWithJoystick.addRequirements(driveTrain);
-    driveTrain.setDefaultCommand(driveWithJoystick);
+    public static XboxController driverJoystick;
 
-    driveForwardTimed =new DriveForwardTimed(driveTrain);
-    driveForwardTimed.addRequirements(driveTrain);
+    /**
+     * The container for the robot. Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+      driveTrain = new DriveTrain();
+      driveWithJoystick = new DriveWithJoystick(driveTrain);
+      driveWithJoystick.addRequirements(driveTrain);
+      driveTrain.setDefaultCommand(driveWithJoystick);
 
-    driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
+      driveForwardTimed = new DriveForwardTimed(driveTrain);
+      driveForwardTimed.addRequirements(driveTrain);
+
+      driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
     // Configure the button bindings
     configureButtonBindings();
   }

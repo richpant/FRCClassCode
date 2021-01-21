@@ -26,11 +26,11 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(){
       //check inversion and then comment out for single motor test
       leftFront = new Spark(Constants.LEFT_FRONT);
-     leftFront.setInverted(false);
+     leftFront.setInverted(true);
       rightFront = new Spark(Constants.RIGHT_FRONT);
       rightFront.setInverted(false);
       leftBack = new Spark(Constants.LEFT_BACK);
-      leftBack.setInverted(false);
+      leftBack.setInverted(true);
       rightBack = new Spark(Constants.RIGHT_BACK);
       rightBack.setInverted(false);
 
