@@ -19,10 +19,12 @@ public final class Constants {
 	public static final int LEFT_BACK = 7;
     public static final int RIGHT_BACK = 8;
     public static final int SHOOTER = 4;
+    public static final int INTAKE = 3;
 
     //use drive station to verify port numbers for controller
 	public static final int XBOX_LEFT_Y_AXIS = 1;
     public static final int XBOX_LEFT_X_AXIS = 0;
+    public static final int RIGHT_TRIGGER = 3;
     //For tuning overall speed of base
     public static final double DRIVETRAINSPEED = 0.7;
     
@@ -32,7 +34,11 @@ public final class Constants {
 	
     //Frc drive station gives the number for controller
     public static final int JOYSTICK_NUMBER = 1;
+    //speed for subsystems
 	public static final double SHOOTER_SPEED = 0.5;
+	public static final double INTAKE_SPEED = 0.5;
+	
+	
 	
 }
 

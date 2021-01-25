@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.IntakeBall;
 import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -32,6 +34,9 @@ public class RobotContainer {
     //Shooter Declare
     private final Shooter shooter;
     private final ShootBall shootBall;
+    //Intake declare
+    private final Intake intake;
+    private final IntakeBall intakeBall;
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -44,11 +49,20 @@ public class RobotContainer {
       driveForwardTimed = new DriveForwardTimed(driveTrain);
       driveForwardTimed.addRequirements(driveTrain);
 
+      //joystick
       driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
-     
+
+     //shooter 
       shooter = new Shooter();
       shootBall = new ShootBall(shooter);
       shootBall.addRequirements(shooter);
+
+      //intake
+      intake = new Intake();
+      intakeBall = new IntakeBall(intake);
+      intakeBall.addRequirements(intake);
+      intake.setDefaultCommand(intakeBall);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -60,6 +74,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    //sets joystick right bumper to turn on shooter
     JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
     shootButton.whileHeld(new ShootBall(shooter));
   }
