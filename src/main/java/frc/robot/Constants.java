@@ -36,7 +36,12 @@ public final class Constants {
     public static final int JOYSTICK_NUMBER = 1;
     //speed for subsystems
 	public static final double SHOOTER_SPEED = 0.5;
-	public static final double INTAKE_SPEED = 0.5;
+    public static final double INTAKE_SPEED = 0.5;
+    public static final double AUTO_SHOOT_TIME = 2.0;
+    //camera res
+	public static final int CAMERA_RES_X = 320;
+	public static final int CAMERA_RES_Y = 240;
+	
 	
 	
 	

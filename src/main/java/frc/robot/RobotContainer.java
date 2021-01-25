@@ -4,8 +4,11 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeBall;
@@ -34,6 +37,7 @@ public class RobotContainer {
     //Shooter Declare
     private final Shooter shooter;
     private final ShootBall shootBall;
+    private final AutoShoot autoShoot;
     //Intake declare
     private final Intake intake;
     private final IntakeBall intakeBall;
@@ -57,12 +61,18 @@ public class RobotContainer {
       shootBall = new ShootBall(shooter);
       shootBall.addRequirements(shooter);
 
+        //auto shooter
+      autoShoot = new AutoShoot(shooter);
+      autoShoot.addRequirements(shooter);
       //intake
       intake = new Intake();
       intakeBall = new IntakeBall(intake);
       intakeBall.addRequirements(intake);
       intake.setDefaultCommand(intakeBall);
 
+      //intiailze camera
+      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+      camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -77,6 +87,9 @@ public class RobotContainer {
     //sets joystick right bumper to turn on shooter
     JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
     shootButton.whileHeld(new ShootBall(shooter));
+    //add button for auto shoot
+    JoystickButton autoShootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    autoShootButton.whileHeld(new AutoShoot(shooter));
   }
 
   /**
