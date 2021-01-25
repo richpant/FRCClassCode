@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
@@ -21,7 +22,7 @@ public class DriveTrain extends SubsystemBase {
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
     DifferentialDrive drive;
-  
+    private final AnalogInput rangeFinder;
 
     public DriveTrain(){
       //check inversion and then comment out for single motor test
@@ -37,6 +38,7 @@ public class DriveTrain extends SubsystemBase {
       leftMotors = new SpeedControllerGroup(leftFront, leftBack);
       rightMotors = new SpeedControllerGroup(rightFront, rightBack);
       drive = new DifferentialDrive(leftMotors, rightMotors);
+      rangeFinder = new AnalogInput(Constants.RANGE_FINDER);
 
 
     }
@@ -50,10 +52,21 @@ public class DriveTrain extends SubsystemBase {
   {
     drive.arcadeDrive(controller.getRawAxis(Constants.XBOX_LEFT_Y_AXIS)*speed, controller.getRawAxis(Constants.XBOX_LEFT_X_AXIS)*speed);
   }
+
   public void driveForward(double speed)
   {
     drive.tankDrive(speed, speed);
   }
+
+  public boolean driveToDistance(double setPointDistance, double speed)
+  {
+    while(rangeFinder.getAverageVoltage()> setPointDistance)
+    {
+      driveForward(speed);
+    }
+    return true;
+  }
+
   public void stop()
   {
     drive.stopMotor();

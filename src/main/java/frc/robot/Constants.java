@@ -20,6 +20,8 @@ public final class Constants {
     public static final int RIGHT_BACK = 8;
     public static final int SHOOTER = 4;
     public static final int INTAKE = 3;
+    //Analog inputs
+    public static final int RANGE_FINDER = 0;
 
     //use drive station to verify port numbers for controller
 	public static final int XBOX_LEFT_Y_AXIS = 1;
@@ -41,6 +43,9 @@ public final class Constants {
     //camera res
 	public static final int CAMERA_RES_X = 320;
 	public static final int CAMERA_RES_Y = 240;
+    // Rangefinder target point
+    public static final double SETPOINT_FORWARD = 1.5;
+	
 	
 	
 	

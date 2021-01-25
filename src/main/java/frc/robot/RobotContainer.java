@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriveForwardTimed;
+import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.ShootBall;
@@ -33,6 +34,7 @@ public class RobotContainer {
     private final DriveTrain driveTrain;
     private final DriveWithJoystick driveWithJoystick;
     private final DriveForwardTimed driveForwardTimed;
+    private final DriveToDistance driveToDistance;
     public static XboxController driverJoystick;
     //Shooter Declare
     private final Shooter shooter;
@@ -50,8 +52,12 @@ public class RobotContainer {
       driveWithJoystick.addRequirements(driveTrain);
       driveTrain.setDefaultCommand(driveWithJoystick);
 
+      //Autonomous 
       driveForwardTimed = new DriveForwardTimed(driveTrain);
       driveForwardTimed.addRequirements(driveTrain);
+
+      driveToDistance = new DriveToDistance(driveTrain);
+      driveToDistance.addRequirements(driveTrain);
 
       //joystick
       driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
