@@ -18,6 +18,8 @@ public final class Constants {
 	public static final int RIGHT_FRONT = 6;
 	public static final int LEFT_BACK = 7;
     public static final int RIGHT_BACK = 8;
+    public static final int SHOOTER = 4;
+
     //use drive station to verify port numbers for controller
 	public static final int XBOX_LEFT_Y_AXIS = 1;
     public static final int XBOX_LEFT_X_AXIS = 0;
@@ -30,6 +32,8 @@ public final class Constants {
 	
     //Frc drive station gives the number for controller
     public static final int JOYSTICK_NUMBER = 1;
+	public static final double SHOOTER_SPEED = 0.5;
+	
 }
 
 
