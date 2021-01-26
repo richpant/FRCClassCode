@@ -8,7 +8,11 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoShoot;
+import frc.robot.commands.AutonomosOne;
+import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.DriveWithJoystick;
@@ -43,6 +47,11 @@ public class RobotContainer {
     //Intake declare
     private final Intake intake;
     private final IntakeBall intakeBall;
+    //auto Command groupI CAN NOT SPELL
+    private final AutonomosOne autonomosOne;
+    private final AutonomousTwo autonomousTwo;
+    // Sendable chooser for smart dashboard
+    SendableChooser<Command> chooser = new SendableChooser<>();
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -76,6 +85,18 @@ public class RobotContainer {
       intakeBall.addRequirements(intake);
       intake.setDefaultCommand(intakeBall);
 
+      //Auto Command group
+      autonomosOne = new AutonomosOne(driveTrain, shooter);
+      autonomousTwo = new AutonomousTwo(driveTrain, shooter);
+      //for chooser for Smart Dashboard
+
+      // Add choices as option here: you can add as many as you want
+      chooser.addOption("AutonomousTwo", autonomousTwo);
+      // Default option
+      chooser.setDefaultOption("AutonomosOne", autonomosOne);
+      //Add to Choices in Smart Dashboard
+      SmartDashboard.putData("Autonomous", chooser);
+
       //intiailze camera
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
       camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
@@ -96,6 +117,9 @@ public class RobotContainer {
     //add button for auto shoot
     JoystickButton autoShootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
     autoShootButton.whileHeld(new AutoShoot(shooter));
+    // add button for drive to distance
+    JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
+    aButton.whenPressed(new DriveToDistance(driveTrain));
   }
 
   /**
@@ -105,6 +129,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return driveForwardTimed;
+   // this will run basic move forward: return driveForwardTimed;
+   return chooser.getSelected();
   }
 }
