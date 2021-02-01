@@ -5,7 +5,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.PWMSparkMax;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -15,10 +16,10 @@ import frc.robot.Constants;
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
  
-    Spark leftFront;
-    Spark leftBack;
-    Spark rightFront;
-    Spark rightBack;
+    PWMSparkMax leftFront;
+    PWMSparkMax leftBack;
+    PWMSparkMax rightFront;
+    PWMSparkMax rightBack;
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
     DifferentialDrive drive;
@@ -26,13 +27,13 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(){
       //check inversion and then comment out for single motor test
-      leftFront = new Spark(Constants.LEFT_FRONT);
+      leftFront = new PWMSparkMax(Constants.LEFT_FRONT);
      leftFront.setInverted(true);
-      rightFront = new Spark(Constants.RIGHT_FRONT);
+      rightFront = new PWMSparkMax(Constants.RIGHT_FRONT);
       rightFront.setInverted(false);
-      leftBack = new Spark(Constants.LEFT_BACK);
+      leftBack = new PWMSparkMax(Constants.LEFT_BACK);
       leftBack.setInverted(true);
-      rightBack = new Spark(Constants.RIGHT_BACK);
+      rightBack = new PWMSparkMax(Constants.RIGHT_BACK);
       rightBack.setInverted(false);
 
       leftMotors = new SpeedControllerGroup(leftFront, leftBack);
@@ -46,22 +47,19 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    // driveForward(0.7);
   }
-  public void  drivewithJoysicks(XboxController controller, double speed)
-  {
+  
+  public void drivewithJoysicks(XboxController controller, double speed){
     drive.arcadeDrive(controller.getRawAxis(Constants.XBOX_LEFT_Y_AXIS)*speed, controller.getRawAxis(Constants.XBOX_LEFT_X_AXIS)*speed);
   }
 
-  public void driveForward(double speed)
-  {
+  public void driveForward(double speed){
     drive.tankDrive(speed, speed);
   }
 
-  public boolean driveToDistance(double setPointDistance, double speed)
-  {
-    while(rangeFinder.getAverageVoltage()> setPointDistance)
-    {
+  public boolean driveToDistance(double setPointDistance, double speed){
+    while(rangeFinder.getAverageVoltage()> setPointDistance){
       driveForward(speed);
     }
     return true;

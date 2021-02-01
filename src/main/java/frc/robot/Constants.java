@@ -35,7 +35,7 @@ public final class Constants {
 	public static final double AUTONOMOUS_SPEED = 0.4;
 	
     //Frc drive station gives the number for controller
-    public static final int JOYSTICK_NUMBER = 1;
+    public static final int JOYSTICK_NUMBER = 0;
     //speed for subsystems
 	public static final double SHOOTER_SPEED = 0.5;
     public static final double INTAKE_SPEED = 0.5;
