@@ -28,11 +28,11 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(){
       //check inversion and then comment out for single motor test
       leftFront = new PWMSparkMax(Constants.LEFT_FRONT);
-     leftFront.setInverted(true);
+     leftFront.setInverted(false);
       rightFront = new PWMSparkMax(Constants.RIGHT_FRONT);
       rightFront.setInverted(false);
       leftBack = new PWMSparkMax(Constants.LEFT_BACK);
-      leftBack.setInverted(true);
+      leftBack.setInverted(false);
       rightBack = new PWMSparkMax(Constants.RIGHT_BACK);
       rightBack.setInverted(false);
 
