@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoShoot;
-import frc.robot.commands.AutonomosOne;
+import frc.robot.commands.AutonomousOne;
+import frc.robot.commands.AutonomousOne;
 import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveToDistance;
@@ -41,15 +42,13 @@ public class RobotContainer {
     private final DriveToDistance driveToDistance;
     public static XboxController driverJoystick;
     //Shooter Declare
-    private final Shooter shooter;
-    private final ShootBall shootBall;
-    private final AutoShoot autoShoot;
+    private final Shooter shooter = new Shooter();
+    private final AutonomousOne drive1second;
+    private final AutonomousTwo drive2second;
+
     //Intake declare
-    private final Intake intake;
-    private final IntakeBall intakeBall;
-    //auto Command groupI CAN NOT SPELL
-    private final AutonomosOne autonomosOne;
-    private final AutonomousTwo autonomousTwo;
+    private final Intake intake = new Intake();
+
     // Sendable chooser for smart dashboard
     SendableChooser<Command> chooser = new SendableChooser<>();
     /**
@@ -71,29 +70,15 @@ public class RobotContainer {
       //joystick
       driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
 
-     //shooter 
-      shooter = new Shooter();
-      shootBall = new ShootBall(shooter);
-      shootBall.addRequirements(shooter);
-
-        //auto shooter
-      autoShoot = new AutoShoot(shooter);
-      autoShoot.addRequirements(shooter);
-      //intake
-      intake = new Intake();
-      intakeBall = new IntakeBall(intake);
-      intakeBall.addRequirements(intake);
-      intake.setDefaultCommand(intakeBall);
-
       //Auto Command group
-      autonomosOne = new AutonomosOne(driveTrain, shooter);
-      autonomousTwo = new AutonomousTwo(driveTrain, shooter);
+      drive1second = new AutonomousOne(driveTrain, shooter);
+      drive2second = new AutonomousTwo(driveTrain, shooter);
       //for chooser for Smart Dashboard
 
       // Add choices as option here: you can add as many as you want
-      chooser.addOption("AutonomousTwo", autonomousTwo);
+      //chooser.addOption("AutonomousTwo", autonomousTwo);
       // Default option
-      chooser.setDefaultOption("AutonomosOne", autonomosOne);
+      //chooser.setDefaultOption("AutonomosOne", autonomosOne);
       //Add to Choices in Smart Dashboard
       SmartDashboard.putData("Autonomous", chooser);
 
@@ -113,10 +98,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //sets joystick right bumper to turn on shooter
     JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
-    shootButton.whileHeld(new ShootBall(shooter));
+    shootButton.whileHeld(() -> shooter.shootBall(Constants.SHOOTER_SPEED));
     //add button for auto shoot
-    JoystickButton autoShootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
-    autoShootButton.whileHeld(new AutoShoot(shooter));
+    JoystickButton runIntake = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED));
     // add button for drive to distance
     JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     aButton.whenPressed(new DriveToDistance(driveTrain));
