@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -21,10 +20,10 @@ public class Intake extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void intakeBall(XboxController controller, double speed)
+  public void intakeBall(double speed)
   {
     //check the axis in drive station for right trigger 
-    intake.set(controller.getRawAxis(Constants.RIGHT_TRIGGER)*speed);
+    intake.set(speed);
   }
   public void stop()
   {
