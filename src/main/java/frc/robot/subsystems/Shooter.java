@@ -6,16 +6,17 @@ package frc.robot.subsystems;
 
 
 
+import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  Spark shooter;
+  PWMSparkMax shooter;
 
   /** Creates a new Shooter. */
   public Shooter() {
-    shooter = new Spark(Constants.SHOOTER);
+    shooter = new PWMSparkMax(Constants.SHOOTER);
   }
 
   @Override

@@ -15,7 +15,7 @@ public class AutonomousOne extends SequentialCommandGroup {
   /** Creates a new AutonomosOne. */
   //take in any subsystem you are going to use
   public AutonomousOne(DriveTrain dt, Shooter s) {
-    addCommands(new DriveForwardTimed(dt), new AutoShoot(s));
+    addCommands(new DriveForwardTimed(dt));
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
    

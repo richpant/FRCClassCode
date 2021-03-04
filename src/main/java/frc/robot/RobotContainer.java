@@ -95,10 +95,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+  
   private void configureButtonBindings() {
     //sets joystick right bumper to turn on shooter
     JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
-    shootButton.whileHeld(() -> shooter.shootBall(Constants.SHOOTER_SPEED));
+    shootButton.whileHeld(() -> shooter.shootBall(Constants.SHOOTER_SPEED)).whenReleased(() -> shooter.shotBall(0));
     //add button for auto shoot
     JoystickButton runIntake = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
     runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED));

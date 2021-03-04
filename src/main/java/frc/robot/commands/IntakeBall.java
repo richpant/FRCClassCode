@@ -15,7 +15,7 @@ public class IntakeBall extends CommandBase {
   /** Creates a new IntakeBall. */
   public IntakeBall(Intake i) {
     intake = i;
-    addRequirements(intake);
+   addRequirements(intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
