@@ -99,7 +99,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //sets joystick right bumper to turn on shooter
     JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
-    shootButton.whileHeld(() -> shooter.shootBall(Constants.SHOOTER_SPEED)).whenReleased(() -> shooter.shotBall(0));
+    shootButton.whileHeld(() -> shooter.shootBall(Constants.SHOOTER_SPEED)).whenReleased(() -> shooter.shootBall(0));
     //add button for auto shoot
     JoystickButton runIntake = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
     runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED));
