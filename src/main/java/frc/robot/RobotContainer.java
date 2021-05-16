@@ -106,7 +106,7 @@ public class RobotContainer {
     JoystickButton runIntake = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
     runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED));
     JoystickButton runLift = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
-    runLift.whileHeld(() -> lift.ballLift(Constants.INTAKE_SPEED));
+    runLift.whileHeld(() -> lift.ballLift(Constants.BALL_LIFT_SPEED));
         // add button for drive to distance
     JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     aButton.whenPressed(new DriveToDistance(driveTrain));
