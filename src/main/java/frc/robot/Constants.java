@@ -20,6 +20,7 @@ public final class Constants {
     public static final int RIGHT_BACK = 8;
     public static final int SHOOTER = 4;
     public static final int INTAKE = 3;
+    public static final int BALL_LIFT = 2;
     //Analog inputs
     public static final int RANGE_FINDER = 0;
 
@@ -39,6 +40,7 @@ public final class Constants {
     //speed for subsystems
 	public static final double SHOOTER_SPEED = 0.5;
     public static final double INTAKE_SPEED = 0.5;
+    public static final double BALL_LIFT_SPEED = 0.5;
     public static final double AUTO_SHOOT_TIME = 2.0;
     //camera res
 	public static final int CAMERA_RES_X = 320;
