@@ -7,14 +7,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
+
 import frc.robot.subsystems.BallLift;
 
 public class Lift extends CommandBase {
-  Lift lift;
+  BallLift lift;
 
   /** Creates a new IntakeBall. */
-  public Lift(Lift bl) {
+  public Lift(BallLift bl) {
     lift = bl;
    addRequirements(lift);
     // Use addRequirements() here to declare subsystem dependencies.
