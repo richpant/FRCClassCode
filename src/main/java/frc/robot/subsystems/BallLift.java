@@ -5,29 +5,31 @@
 package frc.robot.subsystems;
 
 
-
 import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
-  PWMSparkMax shooter;
+public class BallLift extends SubsystemBase {
+  PWMSparkMax ballLift;
 
-  /** Creates a new Shooter. */
-  public Shooter() {
-    shooter = new PWMSparkMax(Constants.SHOOTER);
+  /** Creates a new Intake. */
+  public BallLift() {
+    ballLift = new PWMSparkMax(Constants.BALL_LIFT);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void shootBall(double speed)
+  public void ballLift(double speed)
   {
-    shooter.set(speed);
+    //check the axis in drive station for right trigger 
+    ballLift.set(speed);
   }
   public void stop()
   {
-    shooter.set(0);
+    ballLift.set(0);
   }
+  
 }
+

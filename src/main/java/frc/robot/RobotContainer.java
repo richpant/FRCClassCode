@@ -12,13 +12,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.AutonomousOne;
-import frc.robot.commands.AutonomousOne;
+
 import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeBall;
+import frc.robot.commands.Lift;
 import frc.robot.commands.ShootBall;
+import frc.robot.subsystems.BallLift;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -48,7 +50,7 @@ public class RobotContainer {
 
     //Intake declare
     private final Intake intake = new Intake();
-
+    private final BallLift lift = new BallLift();
     // Sendable chooser for smart dashboard
     SendableChooser<Command> chooser = new SendableChooser<>();
     /**
@@ -103,7 +105,9 @@ public class RobotContainer {
     //add button for auto shoot
     JoystickButton runIntake = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
     runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED));
-    // add button for drive to distance
+    JoystickButton runLift = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    runLift.whileHeld(() -> lift.ballLift(Constants.BALL_LIFT_SPEED));
+        // add button for drive to distance
     JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     aButton.whenPressed(new DriveToDistance(driveTrain));
   }
