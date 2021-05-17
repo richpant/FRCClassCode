@@ -15,6 +15,7 @@ public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
   public Intake() {
     intake = new Spark(Constants.INTAKE);
+    intake.setInverted(true);
   }
 
   @Override

@@ -16,6 +16,7 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter() {
     shooter = new PWMSparkMax(Constants.SHOOTER);
+    shooter.setInverted(true);
   }
 
   @Override

@@ -104,9 +104,9 @@ public class RobotContainer {
     shootButton.whileHeld(() -> shooter.shootBall(Constants.SHOOTER_SPEED)).whenReleased(() -> shooter.shootBall(0));
     //add button for auto shoot
     JoystickButton runIntake = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
-    runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED));
+    runIntake.whileHeld(() -> intake.intakeBall(Constants.INTAKE_SPEED)).whenReleased(() -> intake.intakeBall(0));
     JoystickButton runLift = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
-    runLift.whileHeld(() -> lift.ballLift(Constants.BALL_LIFT_SPEED));
+    runLift.whileHeld(() -> lift.ballLift(Constants.BALL_LIFT_SPEED)).whenReleased(() -> lift.ballLift(0));
         // add button for drive to distance
     JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     aButton.whenPressed(new DriveToDistance(driveTrain));
